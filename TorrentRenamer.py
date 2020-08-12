@@ -24,7 +24,6 @@ os.chdir(path)
 index = 1
 
 for filename in os.listdir(path):
-        print(filename)
         if index < 10:
                 name = newname + "0" + str(index) + "." + ext
         else:
