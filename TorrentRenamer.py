@@ -12,23 +12,32 @@ while path == "":
             print("Invalid filepath, try again")
             path = ""
 
+path.strip()
+
+try:
+        location = path + "/" + ".DS_Store"
+        os.remove(location)
+
+except:
+        print("No rubbish files found for deletion")
 
 for f in os.listdir(path):
     print(f)
 
+sorted_files = sorted(os.listdir(path))
+
+print("done")
+print(sorted_files)
+
 newname = input("What should the files be named? (eg- Breaking Bad S01E will return Breaking Bad S01E01...): ")
-ext = input("What is the file format (mkv/mp4/jpg/png/etc)")
+ext = input("What is the file format? (mkv/mp4/jpg/png/etc): ")
 
 os.chdir(path)
 
-index = 1
+for index, filename in enumerate(sorted_files, 1):
+        
+        name = f"{newname}{index:02d}.{ext}"
 
-for filename in os.listdir(path):
-        if index < 10:
-                name = newname + "0" + str(index) + "." + ext
-        else:
-                name = newname + str(index) + "." + ext
+        print("renaming " + filename + "to " + name) 
 
         os.rename(filename, name)
-        index += 1
-
