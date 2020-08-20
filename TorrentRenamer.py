@@ -2,7 +2,7 @@ import os
 
 path = ""
 
-while path == "":
+while path == "":   
         path = input("Enter folder location in system directory (eg- /users/username/desktop/foldername): ")
 
         try:
@@ -38,6 +38,6 @@ for index, filename in enumerate(sorted_files, 1):
         
         name = f"{newname}{index:02d}.{ext}"
 
-        print("renaming " + filename + "to " + name) 
+        print("renaming " + filename + " to " + name) 
 
         os.rename(filename, name)
