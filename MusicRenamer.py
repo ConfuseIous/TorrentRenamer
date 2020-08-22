@@ -1,58 +1,62 @@
 import os
 
-path = ""
+artistPath = ""
 
-while path == "":   
-        path = input("Enter folder location in system directory (eg- /users/username/desktop/foldername): ")
+while artistPath == "":   
+        artistPath = input("Enter folder location in system directory (eg- /users/username/desktop/foldername): ")
 
         try:
-            os.listdir(path)
+            os.listdir(artistPath)
 
         except:
             print("Invalid filepath, try again")
-            path = ""
+            artistPath = ""
 
-path.strip()
+artistPath.strip()
 
 try:
-        location = path + "/" + ".DS_Store"
+        location = artistPath + "/" + ".DS_Store"
         os.remove(location)
 
 except:
         print("No rubbish files found for deletion")
 
-for f in os.listdir(path):
-    print(f)
-
-sorted_artists = sorted(os.listdir(path))
-
+sorted_artists = sorted(os.listdir(artistPath))
 
 print(sorted_artists)
 
-for folder in sorted_folders:
+for artist in sorted_artists:
         
-        newPath = path + "/" + folder
+        albumPath = artistPath + "/" + artist
 
-        print(newPath)
-        os.chdir(newPath)
+        print(albumPath)
+        os.chdir(albumPath)
 
         try:
-                location = newPath + "/" + ".DS_Store"
+                location = albumPath + "/" + ".DS_Store"
                 os.remove(location)
 
         except:
                print("No rubbish files found for deletion")
 
-        sorted_albums = sorted(os.listdir(newPath))
+        sorted_albums = sorted(os.listdir(albumPath))
+        print(sorted_albums)
 
-        for filename in sorted_albums:
-                count = len(filename)
-                print(filename)
-                newName = filename[5:count]
+        for album in sorted_albums:
+                
+                songPath = albumPath + "/" + album
 
-                print(newName)
+                print(songPath)
+                os.chdir(songPath)
 
-                #os.rename(filename, newName)
+                sorted_songs = sorted(os.listdir(songPath))
+
+                for songName in sorted_songs:
+                        newName = songName[5:len(songName)]
+
+                        print(newName)
+
+                        os.rename(songName, newName)
         
 
 

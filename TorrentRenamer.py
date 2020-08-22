@@ -18,7 +18,7 @@ try:
         location = path + "/" + ".DS_Store"
         os.remove(location)
 
-except:
+except
         print("No rubbish files found for deletion")
 
 for f in os.listdir(path):
