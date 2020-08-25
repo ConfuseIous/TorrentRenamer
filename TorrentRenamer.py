@@ -18,16 +18,13 @@ try:
         location = path + "/" + ".DS_Store"
         os.remove(location)
 
-except
+except:
         print("No rubbish files found for deletion")
 
 for f in os.listdir(path):
     print(f)
 
 sorted_files = sorted(os.listdir(path))
-
-print("done")
-print(sorted_files)
 
 newname = input("What should the files be named? (eg- Breaking Bad S01E will return Breaking Bad S01E01...): ")
 ext = input("What is the file format? (mkv/mp4/jpg/png/etc): ")
