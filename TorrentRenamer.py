@@ -1,3 +1,16 @@
+##########################################################
+#                                                        # 
+# TorrentRenamer by Karandeep Singh (ConfuseIous)        #
+#                                                        # 
+# https://github.com/ConfuseIous/TorrentRenamer          #
+#                                                        # 
+# Provided under the MIT License. See LICENSE.txt        # 
+#                                                        # 
+# DISCLAIMER: This script has only been tested on macOS. #
+# Use on other systems at your own risk.                 #
+#                                                        #
+##########################################################
+
 import os
 
 path = ""
@@ -14,30 +27,28 @@ while path == "":
 
 path.strip()
 
+# macOS creates a .DS_Store file, which may cause issues, thus it is removed
 try:
         location = path + "/" + ".DS_Store"
         os.remove(location)
-
 except:
-        print("No rubbish files found for deletion")
+        pass
 
-for f in os.listdir(path):
-    print(f)
+ext = ""
+for index, file in enumerate(os.listdir(path)):
+        if index == 0:
+                ext = os.path.splitext(file)[1]
+        elif os.path.splitext(file)[1] != ext:
+                print("Not all files have the same extension. TorrentRenamer will now quit. Please remove any extra files and run TorrentRenamer again.")
+                quit()
 
-sorted_files = sorted(os.listdir(path))
-
-print("done")
-print(sorted_files)
+sorted_files = sorted(os.listdir(path)) 
 
 newname = input("What should the files be named? (eg- Breaking Bad S01E will return Breaking Bad S01E01...): ")
-ext = input("What is the file format? (mkv/mp4/jpg/png/etc): ")
 
 os.chdir(path)
 
 for index, filename in enumerate(sorted_files, 1):
-        
-        name = f"{newname}{index:02d}.{ext}"
-
-        print("renaming " + filename + "to " + name) 
-
+        name = f"{newname}{index:02d}{ext}"
         os.rename(filename, name)
+        print("Renamed " + filename + " to " + name)
