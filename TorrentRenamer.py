@@ -17,7 +17,7 @@ path = ""
 
 while path == "":
         path = input("Enter folder location in system directory (eg- /users/username/desktop/foldername): ")
-
+        
         try:
             os.listdir(path)
 
@@ -25,7 +25,7 @@ while path == "":
             print("Invalid filepath, try again")
             path = ""
 
-path.strip()
+path = path.strip()
 
 # macOS creates a .DS_Store file, which may cause issues, thus it is removed
 try:
